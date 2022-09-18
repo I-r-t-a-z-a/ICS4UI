@@ -3,21 +3,24 @@ void setFirstGrid(){
     for (int j = 0 ; j < gridSize-1 ; j++){
       cells[i][j] = grass;
       cellsNext[i][j] = grass;
+      originalPosRand[i][j] = grass;
     }
   }
   for (int f = 0; f < nFlowers ; f++){    
     int randI = round(random(0, gridSize-1)); 
     int randJ = round(random(0, gridSize-1));
-    if (cells[randI][randJ] == grass)
+    if (cells[randI][randJ] == grass){
       cells[randI][randJ] = cellsNext[randI][randJ] = flowers;
+      originalPosRand[randI][randJ] = flowers;}
     else if (cells[randI][randJ] != grass)   
       nFlowers++;
   }
   for (int b = 0; b < nBees ; b++){
     int randomI = round(random(0, gridSize-1)); 
     int randomJ = round(random(0, gridSize-1));
-      if (cells[randomI][randomJ] == grass)
+      if (cells[randomI][randomJ] == grass){
         cells[randomI][randomJ] = bees; 
+        originalPosRand[randomI][randomJ] = bees;}
       else if (cells[randomI][randomJ] != grass)  
         nBees++;
   } 

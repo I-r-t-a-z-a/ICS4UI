@@ -1,8 +1,20 @@
+import g4p_controls.*; //<>//
+/*
+Wishlist 
+  increase number of flowers ? unstable
+  gridSize ? unstable ? restart after?
+  increase number of bees (restart) ? unstable since you could add too many of them and crash the program.
+  all of them are unstable since they largely situation dependent.
+  3 Possible setups
+  more demos 
+  .. in comments are self comments
+*/
 // Changeable Variables //<>//
 int frameRate = 10; // 
 int depolRate = 150; //how fast the flowers are ready to become pollinated (i.e. how fast "depollinate"). This value denotes that every _ generation, pollinated flowers will become less pollinated.
-int gridSize = 50; // Recommended: Roughly twice the amount of bees and flowers.
+int gridSize = 10; // Recommended: Roughly twice the amount of bees and flowers.
 String setup = "Random"; 
+// optimal setup. 10, 150, 50, "Random"
 /*
 3 Setups: 
 Random (specified number of bees and flowers randomly placed), 
@@ -11,8 +23,8 @@ Checkerboard Field (flowers arranged in a checkerboard fashion with one bee).
 */
 
 // For Random setup: Ratio of 1:5 nBees to nFlowers recommended.
-int nBees = 4; 
-int nFlowers = 20; 
+int nBees = 1; 
+int nFlowers = 15; 
 
 // For Custom setup:
 int fI = 4; 
@@ -22,6 +34,7 @@ int bJ = 4;
 
 color [][] cells = new color[gridSize][gridSize];  
 color [][] cellsNext = new color[gridSize][gridSize]; 
+color [][] originalPosRand = new color[gridSize][gridSize];
 color bees = color(255, 255, 0);
 color flowers = color(255, 200, 200);
 color flowPhase1 = color(255, 150, 150);
@@ -35,8 +48,11 @@ float padding = 60;
 int count = 0;
 int nGen = 0;
 
+boolean running = true;
+
 void setup() {
   size(800, 800);
+  createGUI();
   cellSize = (width - 2 * padding)/gridSize;
   if ( setup == "Random" )
     setFirstGrid();
@@ -64,9 +80,6 @@ void printGrid() {
     }
     y += cellSize;
   }
-  fill(190, 170, 66);
-  textFont(createFont("Times New Roman", 16));
-  text( "To Pause/Play simulation, press [SPACE]. To increase and decrease the frame rate, press [W] and [S] respectively.", 50, 50); 
 }
 
 int[] scanEnvironment(int row, int column) { // a bee "scans" cells around it and returns the coordinates of the nearest flower.
@@ -243,19 +256,6 @@ void moveRandomly(int i, int j){ // takes the coordinates of the bee and moves i
   }
 }
 
-void keyPressed() {
-  if(key == ' ')
-    if (count % 2 != 0) 
-      noLoop();
-    else 
-      loop();
-    count++;
-   if ((key == 'W' || key == 'w') && frameRate <= 55)
-     frameRate += 5; 
-   else if ((key == 'S' || key == 's') && frameRate >= 10)
-     frameRate -= 5;
-}
-
 boolean scanForBee (int i, int j){ // flower checks if a bee is adjacent to it.
   for (int a = -1; a < 1; a++) { 
     for (int b = -1; b < 1; b++) {
@@ -290,4 +290,31 @@ void move(int iValue, int jValue, int i, int j){
   }
   else
     moveRandomly(i, j);
+}
+
+void restart(){
+ // size(800, 800);
+ // cellSize = (width - 2 * padding)/gridSize;
+  if ( setup == "Random" ){
+    for (int i = 0 ; i < gridSize-1 ; i++){
+      for (int j = 0 ; j < gridSize-1 ; j++){
+        cells[i][j] = originalPosRand[i][j];
+        cellsNext[i][j] = originalPosRand[i][j];
+      }
+    }
+  }
+  else if (setup == "Custom")
+    setFirstGridCustom();
+  else if (setup == "Checkerboard Field")
+    setFlowerField();
+}
+
+void clear(){
+  for (int i = 0 ; i < gridSize-1 ; i++){
+      for (int j = 0 ; j < gridSize-1 ; j++){
+        cells[i][j] = grass;
+        cellsNext[i][j] = grass;
+        setFirstGrid();
+      }
+    }
 }
