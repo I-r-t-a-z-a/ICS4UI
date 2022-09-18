@@ -1,18 +1,11 @@
 import g4p_controls.*; //<>//
-// Changeable Variables //<>//
-int frameRate = 10; // 
-int depolRate = 150; //how fast the flowers are ready to become pollinated (i.e. how fast "depollinate"). This value denotes that every _ generation, pollinated flowers will become less pollinated.
-int gridSize = 10; // Recommended: Roughly twice the amount of bees and flowers.
-String setup = "Random"; 
-// optimal setup. 10, 150, 50, "Random"
-/*
-3 Setups: 
-Random (specified number of bees and flowers randomly placed), 
-Custom (one flower and one bee placed at a specified location), 
-Checkerboard Field (flowers arranged in a checkerboard fashion with one bee).
-*/
 
-// For Random setup: Ratio of 1:5 nBees to nFlowers recommended.
+// Changeable Variables //<>//
+int frameRate = 10; 
+int depolRate = 150; //how fast the flowers are ready to become pollinated (i.e. how fast "depollinate"). This value denotes that every _ generation, pollinated flowers will become less pollinated.
+int gridSize = 10; 
+String setup = "Random"; 
+
 int nBees = 1; 
 int nFlowers = 15; 
 
@@ -283,8 +276,6 @@ void move(int iValue, int jValue, int i, int j){
 }
 
 void restart(){
- // size(800, 800);
- // cellSize = (width - 2 * padding)/gridSize;
   if ( setup == "Random" ){
     for (int i = 0 ; i < gridSize-1 ; i++){
       for (int j = 0 ; j < gridSize-1 ; j++){

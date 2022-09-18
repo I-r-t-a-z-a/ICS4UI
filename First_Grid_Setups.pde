@@ -36,13 +36,11 @@ void setFirstGridCustom(){
   cells[fI][fJ] = cellsNext[fI][fJ] = flowers; 
   cells[bI][bJ] = bees;
   
-  ///*
   cells[0][4] = cellsNext[0][4] = flowers; 
   cells[7][4] = cellsNext[7][4] = flowers; 
   cells[2][2] = cellsNext[2][2] = flowers; 
   cells[1][7] = cellsNext[1][7] = flowers;
   cells[8][8] = cellsNext[8][8] = flowers; 
-  //*/ 
 }
 
 void setFlowerField(){
