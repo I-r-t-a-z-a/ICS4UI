@@ -21,9 +21,9 @@ The grass cell becomes the bee cell when a bee moves to it, while the previous b
 A bee first scans 120 nearest cells relative to the bee to find the nearest unpollinated flower (or any phase 1, 2, or 3 flower). If it detects a flower, it will move toward it (one cell at a time). If it does not, it will randomly move one or two cells in any direction until it finds one in its range. When the bee is adjacent to an unpollinated flower, the flower turns redder until it turns red (becomes pollinated). After pollinating a flower, the bee ignores it and proceeds to scan for another unpollinated flower, starting the cycle again. Over time, the flower becomes pinker until it turns pink (becoming unpollinated ). If a bee detects this flower (at whichever phase), it will still pollinate it. Eventually, if all flowers are pollinated (or the bee does not detect it), the bee will move randomly within the grid.
 
 
-## Sample Diagram
-![Pictures of the first four generations](https://user-images.githubusercontent.com/83916285/161854274-ee76b228-a2f1-4685-b8d3-1a8d5ed8dd2a.png)
-![Pictures of generations 5 through 7](https://user-images.githubusercontent.com/83916285/161854396-cf59f30a-341b-41e5-a249-8052f02c1f9d.png)
+## Sample Diagrams
+![Picture of first 2 generations](https://github.com/irtazahasan-sm/BeesAndFlowers/assets/83916285/bb4a8a44-b92e-4703-8c56-9f11f1eba0c4)
+![Pictures of generations 3 through 7](https://user-images.githubusercontent.com/83916285/161854396-cf59f30a-341b-41e5-a249-8052f02c1f9d.png)
 ![Picture of generation n + 1](https://user-images.githubusercontent.com/83916285/161854517-a1419c1f-17e5-4b9b-ba07-5bcbb9c6db65.png)
 
 
